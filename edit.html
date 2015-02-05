@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link type="text/css" rel="stylesheet" href="/stylesheets/main.css">
+		<title>Edit Contact - CS496</title>
+		<script>
+		function formSelect(jsState){
+			var stateSelect = document.getElementById('editstate');
+			stateSelect.value = jsState;
+		}
+		</script>
+	</head>
+
+	<body onload="formSelect('{{ state|safe }}')">
+	<h2>Contact to edit</h2>
+	<table style="width:60%">
+			<tr>
+				<th>Name</th>
+				<th>Phone</th>
+				<th>Email</th>
+				<th>Address</th>
+				<th>Image</th>
+			</tr>
+			<tr>
+				<td>{{ firstname }} 
+				{{ lastname }}</td>
+				<td>{{ phone }}</td>
+				<td>{{ email  }}</td>
+				<td>{{ address }} 
+				{{ state }}</td>
+				{% if photo %}
+					<td><img alt="Contact photo" src="/img?img_id={{ edit_key.urlsafe() }}"></td>
+				{% else %}
+					<td>No Image</td>
+				{% endif %}
+			</tr>
+	</table>
+	<hr>
+	<form action="/update?up_id={{ edit_key.urlsafe() }}" enctype="multipart/form-data" method="post">
+	<div>Name: 
+		<input type="text" name="fname" value="{{ firstname|safe }}">
+		<input type="text" name="lname" value="{{ lastname|safe }}">
+		Phone: <input type="tel" name="phone" value="{{ phone|safe }}">
+		Email: <input type="email" name="email" value="{{ email|safe }}">
+	</div>
+	<div>
+		Address: <input type="text" name="addr" value="{{ address|safe }}">
+		<select id="editstate" name="state">
+			<option value="">Select state...</option>
+			<option value="AL">Alabama</option>
+			<option value="AK">Alaska</option>
+			<option value="AZ">Arizona</option>
+			<option value="AR">Arkansas</option>
+			<option value="CA">California</option>
+			<option value="CO">Colorado</option>
+			<option value="CT">Connecticut</option>
+			<option value="DE">Delaware</option>
+			<option value="DC">District Of Columbia</option>
+			<option value="FL">Florida</option>
+			<option value="GA">Georgia</option>
+			<option value="HI">Hawaii</option>
+			<option value="ID">Idaho</option>
+			<option value="IL">Illinois</option>
+			<option value="IN">Indiana</option>
+			<option value="IA">Iowa</option>
+			<option value="KS">Kansas</option>
+			<option value="KY">Kentucky</option>
+			<option value="LA">Louisiana</option>
+			<option value="ME">Maine</option>
+			<option value="MD">Maryland</option>
+			<option value="MA">Massachusetts</option>
+			<option value="MI">Michigan</option>
+			<option value="MN">Minnesota</option>
+			<option value="MS">Mississippi</option>
+			<option value="MO">Missouri</option>
+			<option value="MT">Montana</option>
+			<option value="NE">Nebraska</option>
+			<option value="NV">Nevada</option>
+			<option value="NH">New Hampshire</option>
+			<option value="NJ">New Jersey</option>
+			<option value="NM">New Mexico</option>
+			<option value="NY">New York</option>
+			<option value="NC">North Carolina</option>
+			<option value="ND">North Dakota</option>
+			<option value="OH">Ohio</option>
+			<option value="OK">Oklahoma</option>
+			<option value="OR">Oregon</option>
+			<option value="PA">Pennsylvania</option>
+			<option value="RI">Rhode Island</option>
+			<option value="SC">South Carolina</option>
+			<option value="SD">South Dakota</option>
+			<option value="TN">Tennessee</option>
+			<option value="TX">Texas</option>
+			<option value="UT">Utah</option>
+			<option value="VT">Vermont</option>
+			<option value="VA">Virginia</option>
+			<option value="WA">Washington</option>
+			<option value="WV">West Virginia</option>
+			<option value="WI">Wisconsin</option>
+			<option value="WY">Wyoming</option>
+		</select>
+	</div>
+	<div>
+		Upload new image: <input type="file" name="pic" accept="image/*">
+	</div>
+	<input type="submit" value="Update Contact">
+	</form>
+	<form action="/">
+		<input type="submit" value="Go Back">
+	</form>
+	<div>
+	<form action="/delete?del_id={{ edit_key.urlsafe() }}" method="post">
+		<input type="submit" value="Delete entire contact">
+	</form>
+	</div>
+	</body>
+</html>
+{% endautoescape %}

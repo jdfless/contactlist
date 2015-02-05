@@ -1,0 +1,38 @@
+indexes:
+
+- kind: Contacts
+  ancestor: yes
+  properties:
+  - name: lastname
+    direction: desc
+
+- kind: Contacts
+  ancestor: yes
+  properties:
+  - name: state
+    direction: desc
+
+- kind: Contacts
+  ancestor: yes
+  properties:
+  - name: lastname
+    direction: asc
+
+- kind: Contacts
+  ancestor: yes
+  properties:
+  - name: state
+    direction: asc
+
+- kind: Contacts
+  properties:
+  - name: state
+  - name: lastname
+    direction: asc
+
+- kind: Contacts
+  properties:
+  - name: state
+  - name: lastname
+    direction: desc
+

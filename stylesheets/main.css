@@ -1,0 +1,11 @@
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  background-color: #DDDDDD;
+}
+
+table, th, td{
+	text-align: left;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
